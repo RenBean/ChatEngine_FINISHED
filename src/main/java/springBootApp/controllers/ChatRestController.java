@@ -11,12 +11,13 @@ import springBootApp.entities.ChatDAO;
 import java.sql.Timestamp;
 
 @RestController
+@RequestMapping("/chat/")
 public class ChatRestController {
 
     @Autowired
     private ChatDAO chatDAO;
 
-    @RequestMapping("/chat/help")
+    @RequestMapping("help")
     public String chatHelp() {
         return "<h1>REST Chat Help!</h1>" +
                 "Use the following Commands:<br><br>" +
@@ -25,12 +26,12 @@ public class ChatRestController {
                 "CHAT HELP: /chat/help";
     }
 
-    @RequestMapping("/chat/")
+    @RequestMapping("/")
     public Iterable<Chat> showChats() {
         return chatDAO.findAll();
     }
 
-    @RequestMapping("/chat/send")
+    @RequestMapping("send")
     public String sendChat(String message) {
         try {
             Chat chat = new Chat();
